@@ -1,0 +1,31 @@
+Options -Indexes
+DirectoryIndex index.php
+
+# ---------- Malinis na URL: login (hindi login.php) ----------
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# 1) Kapag may nag-type ng /login.php  ->  ire-redirect sa /login   (mga page lang, hindi ang api/ at tools/)
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
+RewriteCond %{REQUEST_METHOD} =GET
+RewriteCond %{REQUEST_URI} !/(api|tools|includes|config|database)/ [NC]
+RewriteRule ^(.+)\.php$ $1 [R=302,L,NC]
+
+# 2) Ang /login ay binubuksan ang login.php sa loob (kung may ganoong file)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.+?)/?$ $1.php [L]
+</IfModule>
+
+# Huwag ipakita ang mga file na hindi dapat makita
+<FilesMatch "(^\.|\.(sql|md|bat|log|ini)$)">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+</FilesMatch>
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set Referrer-Policy "same-origin"
+</IfModule>
