@@ -1,0 +1,292 @@
+/* Bank slips (Cash Deposit, Withdrawal, Check Deposit, ECPay) - shared by kiosk and teller view */
+.sl{--ink:#1d3a78;--bar:#14224d;--fill:#0a1a3d;position:relative;width:770px;margin:0 auto;background:#fff;color:var(--ink);
+    font:13px/1.2 Arial,Helvetica,sans-serif;border:2px solid var(--ink);box-sizing:border-box;overflow:hidden;text-align:left}
+.sl *{box-sizing:border-box}
+.sl td,.sl th{text-align:left;font-weight:normal;background:transparent}
+.sl tr:hover{background:transparent}
+.sl > :not(.sl-head){margin-top:-1px}
+.sl > .sl-head + *{margin-top:0}
+.sl .lb{font-size:13.5px;padding:3px 4px 0 6px;line-height:1.15}
+
+/* inputs */
+.sl-in{display:block;width:100%;border:0;outline:0;background:transparent;color:var(--fill);font:15px Arial,Helvetica,sans-serif;padding:0 5px;height:26px;border-radius:0}
+.sl-in[readonly]{cursor:default}
+.sl-ta{resize:none;height:100%;padding:4px 6px;line-height:1.35}
+input[type=date].sl-in{font-size:14px;padding:0 2px}
+
+/* header + bars */
+.sl-head{position:relative;height:150px}
+.sl-logo{position:absolute;left:50%;top:14px;width:158px;transform:translateX(-50%)}
+.sl-fno{position:absolute;left:14px;bottom:8px;font-size:11.5px;font-weight:bold;line-height:1.2}
+.sl-bar{background:var(--bar);color:#fff;text-align:center;font-weight:normal;font-size:19px;letter-spacing:.9px;height:30px;line-height:30px}
+
+/* tables */
+.sl-t{border-collapse:collapse;width:calc(100% + 4px);margin-left:-2px;table-layout:fixed}
+.sl-t td{border:1px solid var(--ink);padding:0;vertical-align:top;position:relative}
+.sl > .sl-t{margin-left:-2px}
+
+.t-name td{height:53px}
+.c-name{width:69.9%}
+.c-name .sl-in.nm,.c-date .sl-in.dt{position:absolute;left:3px;right:3px;bottom:3px}
+.c-name .sl-in.nm{font-size:17px}
+
+.t-acct td{height:45px}
+.ac-lb{width:16.9%;font-size:13.5px;padding:2px 4px 0 6px !important;line-height:1.15;vertical-align:top}
+.ac{width:5.54%}
+.ac.dk{background:var(--bar)}
+.ac-in{display:block;width:100%;height:43px;border:0;outline:0;background:transparent;text-align:center;font:bold 20px Arial,sans-serif;color:var(--fill);padding:0}
+
+.sl-valid{height:140px;border-top:1px solid var(--ink)}
+.sl-wd .sl-valid{height:112px}
+
+/* account / product type row */
+.t-types td{height:76px;padding:3px 0 0 3px}
+.ty1{width:23.7%}.ty2{width:24.6%}.ty3{width:29.5%}.ty4{width:22.2%}
+.sl-check .t-types td{height:52px}
+.sl-cb{display:block;position:relative;font-weight:bold;font-size:14.5px;line-height:18px;padding:0 4px;white-space:nowrap;cursor:pointer}
+.sl-cb input{position:absolute;opacity:0;width:0;height:0}
+.sl-cb i{display:inline-block;width:14px;height:14px;border:2px solid var(--ink);margin-right:5px;vertical-align:-2px;background:#fff;position:relative}
+.sl-cb input:checked + i::after{content:"";position:absolute;left:2px;top:-4px;width:5px;height:11px;border:solid var(--fill);border-width:0 3px 3px 0;transform:rotate(40deg)}
+
+/* denomination table */
+.t-den{margin-top:-1px}
+.t-den td{vertical-align:middle}
+.t-den .grp{width:6.5%;text-align:center;font-weight:bold;font-size:14px;vertical-align:top;padding-top:0}
+.t-den .grp span{display:block;line-height:31px}
+.t-den td.grp[rowspan="4"] span{line-height:25px}
+.t-den .dn{width:35.5%;text-align:right;font-size:15px;padding-right:26px;position:relative}
+.t-den .dn .php{position:absolute;left:36px;font-weight:bold}
+.t-den .dn b{font-weight:bold}
+.t-den .pc{width:25.2%}
+.t-den .m-p{width:24.7%}
+.t-den .m-c{width:8.2%}
+.t-den tr.dr td{height:31px}
+.t-den tr.dh td{height:26px;text-align:center;font-weight:normal;font-size:14.5px;vertical-align:middle}
+.t-den .dn-h{text-align:center !important;padding:0 !important}
+.t-den .pc .sl-in,.t-den .m-p .sl-in{text-align:right;font-size:16px;padding-right:8px}
+.t-den .m-c .sl-in{text-align:center;padding:0;font-size:15px}
+.t-den td.oth{text-align:left !important;padding:0 0 0 70px !important}
+.t-den td.oth b{font-weight:bold;font-size:14.5px}
+.t-den td.oth .sl-in.oth-lb{display:inline-block;width:62px;height:20px;border-bottom:1px solid var(--ink);vertical-align:bottom;padding:0 2px;font-size:14px}
+.t-den tr.tot td{height:32px;vertical-align:middle}
+.t-den .tot-lb{background:var(--bar);color:#fff;text-align:center !important;font-weight:normal;font-size:19px;letter-spacing:.9px;padding:0 !important}
+.t-den .tot .sl-in{text-align:right;font-weight:bold;padding-right:8px}
+.t-den .tot .m-c .sl-in{text-align:center}
+
+.sl-words{height:143px;border-top:1px solid var(--ink)}
+.sl-words .sl-ta{height:calc(100% - 22px)}
+.t-sign td{height:95px}
+.sg1{width:42.6%}.sg2{width:26.7%}.sg3{width:30.7%}
+.sl-sig{position:absolute;left:2px;right:2px;top:36px;bottom:2px}
+.sl-sig canvas{display:block;width:100%;height:100%;touch-action:none;background:transparent;cursor:crosshair}
+.sl-sig-clear{position:absolute;right:2px;top:-30px;font:11px Arial;padding:2px 7px;background:#fff;color:var(--ink);border:1px solid var(--ink);border-radius:3px;margin:0;cursor:pointer}
+.sl-sigimg{position:absolute;left:2px;right:2px;top:36px;bottom:2px;width:calc(100% - 4px);height:calc(100% - 38px);object-fit:contain}
+.sl-foot{border-top:1px solid var(--ink);text-align:center;font-weight:bold;font-size:13px;height:30px;line-height:29px}
+
+/* check deposit */
+.sl-check .sl-head{height:140px}
+.sl-check .sl-valid{height:138px}
+.sl-note{border-top:1px solid var(--ink);padding:5px 8px 4px;font-size:14px;line-height:1.3}
+.ck-types{display:flex;margin-top:3px}
+.ck-types > div{width:50%;padding-left:0}
+.ck-types .sl-cb{padding:0 0 0 0;font-weight:normal;font-size:14.5px;line-height:21px}
+.ck-types > div + div{padding-left:0}
+.t-chk{margin-top:-1px}
+.t-chk td{vertical-align:middle}
+.t-chk tr.dh td{height:26px;text-align:center;font-size:14.5px}
+.t-chk tr.cr td{height:33px}
+.bk-h{width:21.8%}.br-h{width:21%}.no-h{width:21%}
+.t-chk td.m-p{width:29.6%}.t-chk td.m-c{width:6.6%}
+.t-chk .bk{position:relative}
+.t-chk .bk .rn{position:absolute;left:12px;top:7px;font-weight:bold;font-size:15px}
+.t-chk .bk .sl-in{padding-left:34px}
+.t-chk .m-p .sl-in{text-align:right;padding-right:8px;font-size:16px}
+.t-chk .m-c .sl-in{text-align:center;padding:0}
+.t-chk tr.tot td{height:32px}
+.t-chk .tot-lb{background:var(--bar);color:#fff;text-align:center;font-weight:bold;font-size:17px;letter-spacing:.4px;padding:0}
+.t-chk .tot .sl-in{text-align:right;font-weight:bold;padding-right:8px}
+.t-chk .tot .m-c .sl-in{text-align:center}
+.t-chk .sl-in.ck{font-size:15px}
+
+/* withdrawal */
+.sl-wd .sl-head{height:146px}
+.wd-recv{text-align:center;font-size:14px;padding-top:12px;height:34px;border-top:1px solid var(--ink)}
+.wd-l1,.wd-l2{position:relative;height:34px;margin:0 !important}
+.wd-l1{padding:0 16px}.wd-l2{padding:0 16px;display:flex;align-items:flex-end}
+.wd-l1 .sl-in,.wd-l2 .sl-in{border-bottom:1px solid var(--ink);height:28px;margin:0;font-size:15px}
+.wd-l2 .wl2{flex:1}
+.wd-l2 .php-o{padding:0 6px 3px 6px;font-size:14px}.wd-l2 .php-c{padding:0 0 3px 4px;font-size:14px}
+.wd-l2 .wphp{width:170px;flex:none;text-align:center}
+.wd-txt{text-align:center;font-size:14px;line-height:1.3;padding:14px 20px 4px}
+.sg-pair{display:flex;gap:64px;padding:24px 56px 8px;height:116px}
+.sgl{position:relative;flex:1}
+.sgl .sl-sig{top:-22px;bottom:auto;height:62px;left:0;right:0}
+.sgl .sl-sigimg{top:-22px;height:62px;bottom:auto}
+.sgl .sl-sig-clear{top:2px;right:0}
+.sg-line{border-top:1px solid var(--ink);margin-top:40px}
+.sg-lb{text-align:center;font-size:11.5px;line-height:1.3;padding-top:2px}
+.dt-in{position:absolute;left:0;right:0;top:12px}
+.dt-in .sl-in{text-align:center}
+.au-1{display:flex;align-items:flex-end;padding:20px 8px 0 8px;font-size:14px;height:48px}
+.au-1 span{padding-right:8px;white-space:nowrap;padding-bottom:3px}
+.au-1 .sl-in.au-nm{flex:1;border-bottom:1px solid var(--ink);height:26px}
+.au-2{padding-top:6px;padding-bottom:0}
+.t-wdden{margin-top:-1px}
+.t-wdden .rm{width:35%;padding:0;vertical-align:top}
+.t-wdden .dn{width:23%}
+.t-wdden .grp{width:6%}
+.t-wdden .pc{width:20%}
+.t-wdden .m-p{width:12%}
+.t-wdden .m-c{width:5%}
+.t-wdden td.oth{padding-left:46px !important}
+.t-wdden tr.dh td.rm,.t-wdden td.rm{text-align:left}
+.rm-t{padding:3px 6px 0;font-size:13.5px;line-height:1.25;height:40px}
+.rm-i{position:relative;padding:0 6px;font-size:13.5px;line-height:1.25;height:112px;border-bottom:1px solid var(--ink)}
+.rm-i span{display:block}
+.rm-i .sl-ta{position:absolute;left:0;right:0;top:34px;bottom:0;height:auto;font-size:14px}
+.rm-i.rm-2{border-bottom:0;height:auto}
+.rm-i.rm-2 .sl-ta{top:20px;height:156px;position:relative}
+.t-wdbank td{height:40px}
+.t-wdbank .b1{width:31%}.t-wdbank .b2{width:33%}.t-wdbank .b3{width:36%}
+.wd-recipient{border-top:1px solid var(--ink);text-align:center;height:130px;padding:6px 0 0}
+.wd-must{font-size:14px;margin-bottom:34px}
+.rc-line{margin:0 auto !important;width:50%}
+
+/* ECPay slip (BBG Form No. 53) */
+.sl-ec{--ink:#262626;--bar:#2b2b2b;width:710px}
+.ec-head{position:relative;height:100px}
+.ec-title{position:absolute;left:12px;top:10px;font:bold 19px Arial,sans-serif;letter-spacing:.2px;color:#222}
+.ec-form{position:absolute;left:12px;top:36px;font-size:13px;line-height:1.3;color:#222}
+.ec-logo{position:absolute;right:0;top:0;width:144px;height:92px;background:#2b2b2b;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ec-logo img{width:110px;display:block}
+.ec-logo small{font-size:7px;color:#bbb;letter-spacing:.8px;margin-top:2px;align-self:flex-end;padding-right:8px}
+.ec-blank{height:472px}
+.ec-valid{font-size:13.5px;padding:0 10px;height:24px;line-height:24px;color:#222}
+.ec-terms{border:1px solid var(--ink);border-width:1px 0;font-size:11.5px;padding:2px 12px;height:22px;line-height:17px;color:#222}
+.ec-f td{height:60px;color:#222}
+.ec-f td.l{width:55.6%}
+.ec-f .lb{font-size:14px;font-weight:bold;padding:6px 4px 0 14px;color:#222}
+.ec-f .lb i{font-weight:bold;font-size:12px}
+.ec-f .sl-in.ef{position:absolute;left:8px;right:8px;bottom:3px;font-size:16px}
+.ec-b{margin-top:-1px}
+.ec-b td{vertical-align:top;height:470px}
+.ec-b td.bank{width:44.4%;padding:0 !important}
+.bk-t{font:italic bold 14.5px Arial,sans-serif;padding:24px 14px 0;color:#222}
+.bk-l{display:flex;align-items:flex-end;padding:0 14px;height:50px;font-size:14.5px;margin-top:18px;color:#222}
+.bk-l span{white-space:nowrap;padding-right:6px;padding-bottom:2px;line-height:1.2}
+.bk-l u{flex:1;border-bottom:1px solid #222;height:20px;display:block;text-decoration:none}
+.bk-l.bk-s span{font-size:11.5px}
+.bk-l u.dbl{border-bottom:4px double #222;height:20px}
+.bk-l.bk-sig{margin-top:30px}
+.bk-note{padding:34px 14px 0;font-size:13px;line-height:1.3;color:#222}
+.ec-b td.brk{padding:0 !important}
+.ec-d{border-collapse:collapse;width:100%;table-layout:fixed}
+.ec-d td{border:1px solid var(--ink);padding:0;vertical-align:middle;position:relative}
+.ec-d tr.ec-h1 td{height:30px;text-align:center;font-weight:bold;font-size:14.5px;border-top:0;border-right:0;border-left:0;color:#222}
+.ec-d tr.ec-h2 td{height:30px;text-align:center;font-size:14.5px;border-top:1px solid var(--ink);border-right:0;color:#222}
+.ec-d tr.dr td{height:35px;font-size:15px;color:#222}
+.ec-d .grp{width:9%;text-align:center;font-weight:bold;font-size:13.5px;vertical-align:top}
+.ec-d .grp span{display:block;line-height:35px}
+.ec-d td.grp[rowspan="4"] span{line-height:36px}
+.ec-d .dn{width:19%;position:relative}
+.ec-d .dv{width:23%;text-align:right;padding-right:10px}
+.ec-d b{font-weight:normal}
+.ec-d .php{position:absolute;left:5px;top:50%;transform:translateY(-50%)}
+.ec-d td.dn.oth{text-align:center;font-weight:bold}
+.ec-d .dv b,.ec-d td.dn b{font-weight:normal}
+.ec-d td.dn[colspan="2"]{text-align:center}
+.ec-d .pc{width:16%}
+.ec-d .am{width:25%;position:relative}
+.ec-d .cc{width:8%}
+.ec-d .am .sl-in{text-align:right;padding-right:6px;padding-left:34px}
+.ec-d .pc .sl-in{text-align:center}
+.ec-d .cc .sl-in{text-align:center;padding:0}
+.ec-d tr.tot td{height:34px;vertical-align:middle}
+.ec-d .tot-lb{text-align:center;font-weight:bold;font-size:14.5px;color:#222}
+.ec-d .tot .am .sl-in{font-weight:bold}
+
+/* printed Form No.1 uses bold field labels */
+.sl-cash .lb,.sl-cash .ac-lb,.sl-cash .t-den tr.dh td{font-weight:bold}
+.sl-cash .sl-words .lb{font-weight:bold}
+
+/* ---- fine tuning to match the printed forms ---- */
+.t-den .tot-lb,.t-chk .tot-lb{text-align:right !important;padding:0 14px 0 0 !important}
+
+/* Cash Deposit (Form No. 1) */
+.sl-cash .sl-head{height:149px}
+.sl-cash .t-name td{height:48px}
+.sl-cash .t-acct td{height:47px}
+.sl-cash .sl-valid{height:134px}
+.sl-cash .t-types td{height:66px}
+.sl-cash .t-den tr.dh td{height:28px}
+.sl-cash .t-den tr.dr td{height:28.5px}
+.sl-cash .t-den tr.tot td{height:29px}
+.sl-cash .t-den .grp span{line-height:28.5px}
+.sl-cash .t-den td.grp[rowspan="4"] span{line-height:23px}
+.sl-cash .sl-words{height:134px}
+.sl-cash .t-sign td{height:130px}
+.sl-cash .sl-foot{height:24px;line-height:23px}
+
+/* Check Deposit (Form No. 2) */
+.sl-check .sl-head{height:124px}
+.sl-check .t-name td{height:54px}
+.sl-check .t-acct td{height:49px}
+.sl-check .sl-valid{height:163px}
+.sl-check .t-types td{height:52px}
+.sl-check .sl-note{font-size:15.5px;height:88px;padding-top:4px}
+.sl-check .ck-types .sl-cb{font-size:15.5px;line-height:23px}
+.sl-check .t-chk tr.dh td{height:32px;font-size:15.5px}
+.sl-check .t-chk tr.cr td{height:30px}
+.sl-check .t-chk .bk .rn{font-weight:normal;font-size:17px;top:4px}
+.sl-check .t-chk tr.tot td{height:35px}
+.sl-check .t-chk .tot-lb{font-weight:normal;font-size:19px;letter-spacing:.9px}
+.sl-check .sl-words{height:135px}
+.sl-check .t-sign td{height:141px}
+.sl-check .sl-foot{font-weight:normal;height:32px;line-height:31px}
+.sl-check .lb{font-size:15px}
+
+/* Withdrawal (Form No. 3) */
+.sl-wd .t-name td{height:44px}
+.sl-wd .t-acct td{height:47px}
+.sl-wd .sl-valid{height:148px}
+.sl-wd .t-types td{height:71px}
+.sg-pair{height:92px;padding-top:18px}
+.au-1{height:42px;padding-top:14px}
+.t-wdden tr.dh td{height:37px}
+.t-wdden tr.dr td{height:28.5px}
+.t-wdden tr.tot td{height:30px}
+.t-wdden .grp span{line-height:28.5px}
+.t-wdden td.grp[rowspan="4"] span{line-height:23px}
+.t-wdbank td{height:44px}
+.wd-recipient{height:111px}
+.wd-must{margin-bottom:26px}
+
+/* ECPay (Form No. 53) */
+.ec-title{left:0;right:150px;text-align:center;top:12px}
+.ec-f .lb{font-weight:normal;font-size:15px}
+.ec-f .lb i{font-size:11.5px}
+.ec-f td{height:56px}
+.ec-b td{height:390px}
+.ec-d tr.ec-h1 td{height:32px}
+.ec-d tr.ec-h2 td{height:30px}
+.ec-d tr.dr td{height:29px}
+.ec-d .grp span{line-height:29px}
+.ec-d td.grp[rowspan="4"] span{line-height:29px}
+.ec-d tr.tot td{height:28px}
+.ec-d .dn{text-align:right;padding-right:12px}
+.ec-d .dn .dv{font-size:15px}
+.ec-d tr.dr td.dn.oth{text-align:center;padding-right:0}
+.ec-d .tot-lb{font-size:14.5px}
+.bk-l{height:44px;margin-top:10px}
+.bk-t{padding-top:16px}
+.bk-note{padding-top:24px}
+.bk-l.bk-sig{margin-top:16px}
+.c-name .sl-in.nm,.c-date .sl-in.dt,.ec-f .sl-in.ef,.dt-in .sl-in{width:auto}
+.dt-in .sl-in{width:100%}
+.bk-l{font-size:15.5px}
+.bk-l.bk-s span{font-size:12px}
+.bk-note{font-size:15px}
+.bk-t{font-size:15px}
+.sl-check .sl-note{height:auto;padding:4px 8px 5px}
+.sl-check .ck-types{margin-top:1px}
+.sl-check .ck-types .sl-cb{line-height:22px}

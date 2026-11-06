@@ -1,0 +1,119 @@
+:root { --blue: #215DB2; }
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; overflow: hidden; } /* Naka-lock ang overflow para tuluyang mawala ang scrollbar */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: #f8f9fa;
+    color: var(--blue);
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+/* Watermark ng BOF sa kanang ibaba */
+body::before {
+    content: "";
+    position: fixed;
+    right: -4vw;
+    bottom: -4vh;
+    width: min(55vw, 680px);
+    height: min(75vh, 800px);
+    background: url('../images/bof_circle_logo1.png') no-repeat center center / contain;
+    opacity: 0.08;
+    margin-bottom: 120px;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Logo sa kaliwang itaas, orasan sa kanang itaas */
+.logo-container { position: absolute; top: 12px; left: clamp(12px, 4vw, 80px); }
+.logo-container img { display: block; width: clamp(90px, 13vw, 180px); }
+.timestamp { position: absolute; top: 8px; right: 12px; font-size: clamp(11px, 1.4vw, 26px); font-weight: bold; color: #333; max-width: 45vw; text-align: right; margin-top: 20px;}
+.bottom-right-image { position: fixed; bottom: 20px; left: 10px; width: 120px; height: 100px; object-fit: contain; z-index: 2; }
+
+.kiosk { max-width: 1100px; margin: 0 auto; padding: clamp(60px, 10vh, 120px) 16px 20px; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+h1 { color: var(--blue); font-size: clamp(26px, min(5vw, 7vh), 70px); font-style: italic; margin: 0 0 35px; line-height: 1.1; }
+h2 { color: var(--blue); font-size: clamp(13px, min(2.2vw, 10vh), 40px); letter-spacing: 2px; margin: 0 0 30px; }
+
+.number-display {
+    display: inline-block;
+    margin: 5px 0 0;
+    padding: clamp(8px, 1.5vh, 16px) clamp(24px, 4vw, 60px);
+    background: rgb(224, 224, 224);
+    border-radius: 20px;
+    font-size: clamp(16px, 2vw, 60px);
+    font-weight: bold;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, .3);
+}
+.big-number { font-size: clamp(150px, min(9vw, 12vh), 250px); line-height: 1.1; }
+.waiting-info { font-size: clamp(13px, 2.5vw, 25px); font-weight: normal; margin-top: 4px; }
+
+.down-arrow { font-size: clamp(20px, min(6vw, 9vh), 90px); line-height: 1.05; color: var(--blue); animation: bounce 1s infinite; margin: 2px 0; }
+@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+
+/* Mga pagpipilian (pang-daliri: malalaki) */
+.client-type { margin-top: 6px; font-size: clamp(15px, 1.8vw, 22px); display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; align-items: center; }
+.client-type label { background: #fff; border: 2px solid #c9d6ec; border-radius: 30px; padding: 8px 16px; cursor: pointer; color: #333; user-select: none; -webkit-tap-highlight-color: transparent; }
+.client-type label:has(input:checked) { background: var(--blue); border-color: var(--blue); color: #fff; }
+.client-type input { width: 18px; height: 18px; margin: 0 6px 0 0; vertical-align: -2px; accent-color: var(--blue); }
+.slip-type-title { flex-basis: 100%; font-weight: bold; color: var(--blue); margin-bottom: 0px; margin-top: 10px; }
+
+.kiosk-msg { display: none; max-width: 720px; margin: 10px auto 0; background: #fdecea; color: #b3261e; border: 1px solid #f5c6cb; padding: 8px 14px; border-radius: 12px; font-weight: bold; font-size: clamp(13px, 1.6vw, 20px); }
+
+#mainBtn {
+    margin-top: clamp(10px, 2vh, 25px);
+    padding: clamp(8px, 1.5vh, 16px) clamp(20px, 3.5vw, 50px);
+    font-size: clamp(45px, min(4vw, 8vh), 60px);
+    background: var(--blue);
+    color: #fff;
+    border: none;
+    border-radius: 40px;
+    max-width: 94vw;
+    cursor: pointer;
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
+}
+#mainBtn:disabled { opacity: .5; cursor: wait; }
+
+/* Maikling screen (cellphone na naka-landscape) */
+@media (max-height: 800px) {
+    .kiosk { padding-top: 55px; }
+    .down-arrow { font-size: clamp(24px, 4vh, 50px); }
+    .client-type label { padding: 6px 14px; }
+    .number-display { padding: 6px 20px; }
+}
+@media (max-height: 600px) {
+    .down-arrow { display: none; }
+}
+@media (max-width: 520px) {
+    .client-type label { padding: 7px 12px; }
+    .bottom-right-image { width: 56px; height: 42px; }
+}
+
+/* ---- slip form (opens full screen) ---- */
+.slip-overlay { display: none; position: fixed; inset: 0; z-index: 1000; background: #dfe5ee; flex-direction: column; text-align: left; }
+.slip-top { display: flex; align-items: center; gap: 16px; padding: 8px 14px; background: var(--blue); color: #fff; }
+.slip-top .slip-back { margin: 0; padding: 8px 20px; font-size: clamp(16px, 2vw, 26px); border: 0; border-radius: 14px; background: #fff; color: var(--blue); cursor: pointer; }
+.slip-heading { font-size: clamp(18px, 2.4vw, 30px); font-weight: bold; }
+.slip-scroll { flex: 1; overflow: auto; padding: 14px 6px 30px; -webkit-overflow-scrolling: touch; }
+.slip-bottom { padding: 8px 14px calc(8px + env(safe-area-inset-bottom)); background: #fff; box-shadow: 0 -3px 10px rgba(0, 0, 0, .2); text-align: center; }
+.slip-bottom .slip-submit { margin: 0; font-size: clamp(18px, 3vw, 34px); padding: 10px clamp(20px, 4vw, 40px); border: 0; border-radius: 40px; background: var(--blue); color: #fff; cursor: pointer; max-width: 100%; }
+.slip-bottom .slip-submit:disabled { opacity: .5; cursor: wait; }
+.slip-error { color: #c0392b; font-size: clamp(14px, 1.8vw, 22px); font-weight: bold; min-height: 24px; margin-bottom: 4px; }
+
+/* ---- Ticket printout: parehong-pareho sa dati (huwag galawin) ---- */
+@media print {
+    @page {
+        size: 80mm auto; /* Sinasabi sa printer na 80mm ang lapad at awtomatikong puputol kung saan nagtapos ang text */
+        margin: 0 !important;
+    }
+    body { 
+        margin-top: 0 !important; 
+        padding-top: 0 !important; 
+        font-family: Arial, sans-serif; 
+        text-align: center; 
+        background: #fff; 
+        min-height: 0; 
+        overflow: visible; 
+    }
+    body::before { display: none; }
+}

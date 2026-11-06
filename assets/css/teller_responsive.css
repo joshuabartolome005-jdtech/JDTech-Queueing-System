@@ -1,0 +1,44 @@
+/* Teller page: tablet at cellphone */
+* { box-sizing: border-box; }
+.table-container { overflow-x: auto; }
+.mt-actions button { max-width: 100%; }
+
+/* Header: logo sa kaliwa, pamagat sa gitna, user sa kanan (walang fixed na margin) */
+.header { display: grid !important; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 10px; }
+.header-brand { display: contents; }
+.header .logo { justify-self: start; max-width: 40vw; }
+.page-title { margin: 0 !important; text-align: center; font-size: clamp(20px, 3.2vw, 40px) !important; }
+.teller-info { justify-self: end; }
+
+@media (max-width: 900px) {
+    .header { padding: 10px 14px !important; height: auto !important; }
+    .logo { height: 48px !important; width: auto !important; }
+    .table-container { margin: 12px 8px !important; width: auto !important; max-width: none !important; }
+    .bottom-right-image { position: static !important; display: block; margin: 16px auto; height: 50px; width: auto; }
+}
+@media (max-width: 700px) {
+    .header { grid-template-columns: 1fr auto; grid-template-areas: "logo info" "title title"; }
+    .header .logo { grid-area: logo; }
+    .page-title { grid-area: title; }
+    .teller-info { grid-area: info; }
+}
+@media (max-width: 760px) {
+    .my-ticket { margin: 10px 8px; padding: 14px; }
+    .mt-number { font-size: 64px; }
+    .mt-actions button { flex: 1 1 100%; font-size: 18px !important; padding: 14px !important; }
+    .mt-secondary button { flex: 1 1 30%; font-size: 14px !important; padding: 10px 6px !important; }
+    table.resp thead { display: none; }
+    table.resp, table.resp tbody, table.resp tr, table.resp td { display: block; width: 100%; }
+    table.resp { background: transparent !important; box-shadow: none !important; }
+    table.resp tr { background: #fff; border-radius: 12px; margin: 0 0 12px; box-shadow: 0 1px 6px rgba(0, 0, 0, .1); padding: 4px 2px; }
+    table.resp tr:hover td { background: transparent; }
+    table.resp tr.row-mine { background: #eaf2ff; }
+    table.resp tr.row-other { background: #f6f6f6; }
+    table.resp tr.row-mine td, table.resp tr.row-other td { background: transparent; }
+    table.resp td { display: flex; justify-content: space-between; align-items: center; gap: 12px; text-align: right !important; padding: 8px 12px !important; border: 0 !important; border-bottom: 1px solid #f0f2f6 !important; }
+    table.resp td:last-child { border-bottom: 0 !important; }
+    table.resp td::before { content: attr(data-label); font-weight: bold; color: #4a6fa5; text-align: left; }
+    table.resp td[colspan]::before { content: none; }
+    .action-cell { flex-wrap: wrap; justify-content: flex-end; }
+    .queue-stats { flex-wrap: wrap; }
+}

@@ -1,0 +1,15 @@
+/* Manage Users - para sa loob ng .content (sidebar layout) */
+.content h1 { text-align: center; }
+.panel form.add-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; align-items: end; margin: 0; padding: 0; background: transparent; box-shadow: none; }
+.add-form .field { display: flex; flex-direction: column; gap: 6px; text-align: left; }
+.add-form label { font-weight: bold; font-size: 14px; color: #4a6fa5; }
+.content input[type=text], .content input[type=password], .content select { padding: 10px 12px; border: 1px solid #c9d3e3; border-radius: 8px; font-size: 15px; width: 100%; background: #fff; font-family: inherit; }
+.btn-primary { height: 42px; padding: 0 20px; border: 0; border-radius: 8px; background: #4a6fa5; color: #fff; font-weight: bold; cursor: pointer; font-size: 14px; }
+.btn-small { padding: 8px 14px; border: 0; border-radius: 8px; background: #4a6fa5; color: #fff; font-weight: bold; cursor: pointer; font-size: 13px; }
+.btn-small.danger { background: #c0392b; }
+.btn-primary:hover, .btn-small:hover { opacity: .9; }
+td.actions form { display: inline-block; margin: 2px; }
+tr.edit-row td { background: #f6f9ff; }
+.alert-ok { background: #d4edda; color: #155724; border-radius: 10px; padding: 10px 14px; margin-bottom: 12px; }
+.alert-err { background: #f8d7da; color: #721c24; border-radius: 10px; padding: 10px 14px; margin-bottom: 12px; }
+@media (max-width: 760px) { table.resp tr.edit-row td { display: block; } }

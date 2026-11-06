@@ -1,0 +1,241 @@
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; 
+            background-color: #f8f9fa; 
+            color: #333333; 
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Top Navigation Header */
+        .header { 
+            width: 100%;
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            padding: 15px 30px; 
+            background-color: #ffffff; 
+            border-bottom: 1px solid #dfe3e6;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo { 
+            height: 85px; 
+            width: auto;
+            object-fit: contain;
+        }
+
+        .page-title {
+            font-size: 40px;
+            font-weight: 700;
+            color: #4a6fa5;
+            margin-left: 700px;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .teller-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .teller-label {
+            font-size: 15px;
+            color: #4a6fa5;
+            background: #f0f4fd;
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid #dfe3e6;
+        }
+
+        .logout-btn { 
+            padding: 8px 16px; 
+            background-color: rgb(77, 133, 255); 
+            color: white; 
+            border: none; 
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer; 
+            transition: background-color 0.2s ease;
+        }
+
+        .logout-btn:hover { 
+            background-color: #d63232; 
+        }
+
+        /* Notification Message */
+        .message {
+            margin-top: 15px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #4a6fa5;
+            min-height: 20px;
+        }
+
+        /* Main Container & Minimalist Table */
+        .table-container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 20px auto 80px auto;
+            background: #ffffff;
+            border-radius: 10px;
+            border: 1px solid #dfe3e6;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+        }
+
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+        }
+
+        th, td { 
+            padding: 16px 20px; 
+            text-align: center; 
+            border-bottom: 1px solid #edf2f7; 
+            font-size: 15px;
+        }
+
+        th { 
+            background: #4a6fa5; 
+            color: white; 
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background-color: #fafbfc;
+        }
+
+        /* Status Badge Styling */
+        .status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .status-waiting { background: #f1c40f; color: #333; }
+        .status-serving { background: #2980b9; color: white; }
+        .status-served { background: #27ae60; color: white; }
+
+        /* Client Type Color Coding */
+        .client-type-regular { color: #215DB2; font-weight: bold; }
+        .client-type-priority { color: #e74c3c; font-weight: bold; }
+        .client-type-new { color: #27ae60; font-weight: bold; }
+        .client-type-other { color: #8e44ad; font-weight: bold; }
+
+        /* Action Controls */
+        .action-cell {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .status-dropdown {
+            padding: 8px 12px;
+            border: 1px solid #dfe3e6;
+            border-radius: 6px;
+            font-size: 14px;
+            outline: none;
+            background-color: #ffffff;
+            cursor: pointer;
+        }
+
+        .status-dropdown:focus {
+            border-color: #4a6fa5;
+        }
+
+        .update-status-btn {
+            padding: 8px 16px;
+            background-color: #4a6fa5;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .update-status-btn:hover {
+            background-color: #3b5b8f;
+        }
+
+        /* Branding Footer Image */
+        .bottom-right-image { 
+            position: fixed; 
+            bottom: 15px; 
+            right: 15px; 
+            width: 150px; 
+            height: auto; 
+            z-index: 9999; 
+            opacity: 0.9;
+        }
+    
+
+
+/* ---- slip column + slip viewer ---- */
+.slip-view-btn { padding: 8px 14px; border: 0; border-radius: 6px; background: #215DB2; color: #fff; font-size: 15px; font-weight: bold; cursor: pointer; }
+.slip-view-btn:hover { background: #1a4a8f; }
+.no-slip { color: #999; }
+.slip-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 2000; background: rgba(15,25,50,.8); flex-direction: column; }
+.slip-modal.open { display: flex; }
+.slip-modal-top { display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; background: #215DB2; color: #fff; }
+.slip-modal-title { font-size: 22px; font-weight: bold; }
+.slip-modal-close { padding: 8px 22px; border: 0; border-radius: 8px; background: #fff; color: #215DB2; font-size: 18px; font-weight: bold; cursor: pointer; }
+.slip-modal-body { flex: 1; overflow: auto; padding: 16px 8px 30px; color: #fff; }
+.slip-none { color: #fff; font-size: 20px; text-align: center; padding: 40px; }
+
+/* ---- queue summary, "you are serving" panel and Call Next ---- */
+.queue-stats { display: flex; justify-content: center; gap: 14px; margin: 18px 0 6px; }
+.queue-stats .stat { background: #fff; border-radius: 30px; padding: 8px 22px; font-size: 16px; color: #555; box-shadow: 0 1px 6px rgba(0,0,0,.1); }
+.queue-stats .stat-n { font-size: 22px; font-weight: bold; margin-right: 6px; }
+.queue-stats .stat-waiting .stat-n { color: #e0a800; }
+.queue-stats .stat-serving .stat-n { color: #215DB2; }
+
+.my-ticket { max-width: 520px; margin: 14px auto 8px; padding: 18px 22px 20px; border-radius: 18px; text-align: center; background: #fff; box-shadow: 0 3px 14px rgba(0,0,0,.12); }
+.my-ticket.serving { border: 3px solid #215DB2; background: #f1f6fd; }
+.my-ticket.idle { border: 3px dashed #b9c6da; }
+.mt-label { font-size: 15px; color: #666; text-transform: uppercase; letter-spacing: 1px; }
+.mt-number { font-size: 84px; font-weight: bold; color: #215DB2; line-height: 1.05; }
+.mt-type { font-size: 18px; font-weight: bold; margin-bottom: 6px; }
+.mt-slip { margin: 6px 0 10px; min-height: 8px; }
+.mt-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 8px; }
+.mt-actions button { border: 0; border-radius: 12px; padding: 14px 26px; font-size: 20px; font-weight: bold; cursor: pointer; color: #fff; }
+.btn-next { background: #215DB2; }
+.btn-done { background: #2e9e5b; }
+.mt-actions button:disabled { opacity: .45; cursor: not-allowed; }
+.mt-hint { margin-top: 10px; color: #888; font-size: 14px; }
+#statusMessage.message { display: none; max-width: 520px; margin: 8px auto; }
+.update-banner { display: none; max-width: 520px; margin: 8px auto; background: #fff3cd; color: #7a5b00; border: 1px solid #ffe08a; border-radius: 10px; padding: 10px 14px; text-align: center; cursor: pointer; font-weight: bold; }
+.by-teller { font-size: 12px; color: #777; margin-top: 3px; }
+tr.row-mine td { background: #eaf2ff; }
+tr.row-other td { background: #f6f6f6; color: #777; }
+
+.mt-secondary { margin-top: 10px; }
+.mt-secondary button { padding: 10px 16px !important; font-size: 15px !important; }
+.btn-recall { background: #8e6bbf; }
+.btn-skip { background: #e08a00; }
+.btn-noshow { background: #c0392b; }
